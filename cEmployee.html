@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Create Employee</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    function update(){
+        var employee = {}
+        
+        employee.first_name = document.getElementById("FName").value;
+        employee.last_name = document.getElementById("LName").value;
+        employee.username = document.getElementById("userName").value;
+        employee.job_title = document.getElementById("email").value;
+        employee.department = document.getElementById("phoneNum").value;
+        
+
+        document.getElementById("userID").value = "";
+        document.getElementById("FName").value= "";
+        document.getElementById("LName").value= "";
+        document.getElementById("userName").value= "";
+        document.getElementById("JTitle").value= "";
+        document.getElementById("dept").value= "";
+        document.getElementById("status").value= "";
+        console.log(employee)
+        const strRequest = JSON.stringify(employee);
+        const encRequest = btoa(strRequest)
+        console.log(encRequest)
+
+        const headers = new Headers();
+        
+       // headers.append('Authorization', 'eyJraWQiOiJPYjlUUFB6K1BNTWQrUHd4a3pXT2lST2VlQnFNbkFpbElGRjB6cmdoSFZjPSIsImFsZyI6IlJTMjU2In0.eyJhdF9oYXNoIjoiNUE0bkZyMFhUUENfZTdya3lCY2tNUSIsInN1YiI6IjBmOGM2MTEwLTgzMGEtNDMxMy05ZDQyLTQwY2YzMTA1NzUyYSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV84dWtQZExtUHUiLCJjb2duaXRvOnVzZXJuYW1lIjoiY21ib3NhaF9hd3MiLCJhdWQiOiI1aWtiOTB2a2dvaHM5NTk2YWNhOHFmcXExYiIsImV2ZW50X2lkIjoiZTMyN2JkYTAtZGRmMi00ZWUxLTg3NGUtZDA1ZGRiOGY3ZGE3IiwidG9rZW5fdXNlIjoiaWQiLCJhdXRoX3RpbWUiOjE2NzcyNjk1MzksIm5hbWUiOiJNaWNoYWVsIEJvc2FoIiwiZXhwIjoxNjc3MjczMTM5LCJpYXQiOjE2NzcyNjk1MzksImp0aSI6ImQ3OTA5Mzc4LTgyYjItNGE0MS04MmYzLWIxZjQ1MjBjYWIxYiIsImVtYWlsIjoiY21ib3NhaEBnbWFpbC5jb20ifQ.FEEIUskNvb6WuYwWOCLmIOjurLnt0OEaFT_jOZB95cWnD5hA0SpN9g84cnHpZQjCueN-KyQdtW7Y0VKLkD8T6jV6NHNh3F6E5DU-zOCpBSh8RiPrMjG6f8TL5Lsb04Ds-Y4-nnaEh80ZyGGwGF3PYm-EHq9PhnU_vEiOR7jfnl4e1bhbma4-6GClWkqeuAd8S5hlRN1Ng0qEbmrIbIgS-eFZT3oPH69d-3kKLYm1T8Z0QX3NKP6hvCjob-J7omfAfT_ZAYZWuwggz8rPDX225s5YieLbBqjN75h18GLh7vgbgEX8sRwbaPXw97CX8imqO4yj5-J7qt1ns3hXo-VNwA');
+        const response = fetch(`https://3u4r5hsmyd.execute-api.us-east-1.amazonaws.com/Dev/employee/${encRequest}`, {
+          method: 'POST',
+          body: encRequest,
+         // headers: headers
+        });    
+
+        alert(`User ${employee.username} created Successfully`) 
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <img src="octank.jpeg" alt="Icon" width="100">
+    <nav>
+        <ul>
+          <li><a href="cEmployee.html">Subscribe</a></li>
+          <li><a href="uEmployee.html">Update Information</a></li>
+          <li><a href="dEmployee.html">unsubscribe</a></li>
+        </ul>
+      </nav>
+  </header>
+  <main>
+    
+
+    <form id="getFName">
+        <label for="FName">First Name:</label>
+        <input type="text" id="FName" name="FName">
+      </form>
+
+      <form id="getLName">
+        <label for="LName">Last Name:</label>
+        <input type="text" id="LName" name="LName">
+      </form>
+
+      <form id="getUserName">
+        <label for="userName">UserName:</label>
+        <input type="text" id="userName" name="userName">
+      </form>
+
+      <form id="JobTitle">
+        <label for="JTitle">Email :</label>
+        <input type="text" id="JTitle" name="JTitle">
+      </form>
+
+      <form id="Department">
+        <label for="Department">Phone Number:</label>
+        <input type="text" id="dept" name="dept">
+      </form>
+
+      
+      
+      <button type="button" onclick="update()">Update</button>
+     
+
+  </main>
+</body>
+
+</html>
+
